@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication.Models.FitnesCentar>
+
+@{
+    ViewBag.Title = "FitnesCentarVlasnik";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Fitnes centri</h2>
+
+    <table class="table">
+        <tr>
+            <th>Naziv</th>
+            <th>Adresa</th>
+            <th>Godina</th>
+            <th></th>
+        </tr>
+        @foreach (var fc in Model)
+        {
+        <tr>
+            <td>@fc.Naziv</td>
+            <td>@fc.Adresa</td>
+            <td>@fc.Godina</td>
+            <td>@Html.ActionLink("Vise informacija", "FitnesCentarViseInformacija", new { id = @fc.Id })</td>
+            <td>@Html.ActionLink("Izmeni", "IzmeniFitnesCentar", "FitnesCentar", new { id = fc.Id }, new { @class = "btn btn-primary" })</td>
+            <td>@Html.ActionLink("Obrisi", "ObrisiFitnesCentar", new { id = fc.Id })</td>
+        </tr>
+        }
+    </table>
+
+    <br />
+
+    <h2 style="color:#fc6519;">Kreiraj novi Fitnes Centar</h2>
+    <form action="KreirajFitnesCentar" method="get">
+        <input type="submit" name="Kreiraj" value="Kreiraj" />
+    </form>
+</body>
+</html>
+

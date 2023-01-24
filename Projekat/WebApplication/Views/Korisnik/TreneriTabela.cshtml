@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebApplication.Models.Korisnik>
+
+@{
+    ViewBag.Title = "TreneriTabela";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Lista Trenera</h2>
+
+    <table class="table">
+        <tr>
+            <th>Korisnicko ime</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Pol</th>
+            <th>Email</th>
+            <th>Fitnes Centar</th>
+            <th>Blokiran</th>
+            <th></th>
+        </tr>
+        @foreach (var k in Model)
+        {
+        <tr>
+            <td>@k.Username</td>
+            <td>@k.Ime</td>
+            <td>@k.Prezime</td>
+            <td>@k.Pol</td>
+            <td>@k.Email</td>
+            <td>@k.AngazovanFitnesCentar.Naziv</td>
+            @if (k.IsBlocked)
+            {
+                <td>Da</td>
+                <td>@Html.ActionLink("Odblokiraj", "OdblokirajTrenera", "Korisnik", new { id = @k.Id }, new { @class = "btn btn-primary" })</td>
+            }
+            @if (!k.IsBlocked)
+            {
+                <td>Ne</td>
+                <td>@Html.ActionLink("Blokiraj", "BlokirajTrenera", "Korisnik", new { id = @k.Id }, new { @class = "btn btn-primary" })</td>
+            }
+        </tr>
+        }
+    </table>
+    <br />
+</body>
+</html>
+

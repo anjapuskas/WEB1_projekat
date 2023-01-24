@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication.Models.FitnesCentar>
+@{
+    ViewBag.Title = "FitnesCentarTabela";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h1 style="color:#fc6519;">Fitnes centri</h1>
+
+    <h3> Opcije pretrage:  </h3>
+    <form action="UcitajFitnesCentre" method="get">
+        <div>
+            <label>Pretrazi po Nazivu: </label><input style="margin-left:12px" type="text" name="pretragaNaziv" /> <br />
+            <label>Pretrazi po Adresi: </label><input style="margin-left:14px" type="text" name="pretragaAdresa" /> <br />
+            <label>Pretrazi po Godini: </label><input style="margin-left:13px" type="text" name="pretragaGodinaMin" /><input style="margin-left:12px" type="text" name="pretragaGodinaMax" /> <br />
+            <input type="submit" name="Pretrazi" value="Pretrazi" /> <br/>
+            @Html.ActionLink("Resetuj pretragu", "FitnesCentarTabela")
+        </div>
+     </form><br/>
+
+        <table class="table">
+            <tr>
+                <th> @Html.ActionLink("Naziv", "UcitajFitnesCentre", new { sort = ViewBag.SortByNaziv, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaAdresa = Request.QueryString["pretragaAdresa"], pretragaGodinaMin = Request.QueryString["pretragaGodinaMin"], pretragaGodinaMax = Request.QueryString["pretragaGodinaMax"] }) </th>
+                <th> @Html.ActionLink("Adresa", "UcitajFitnesCentre", new { sort = ViewBag.SortByAdresa, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaAdresa = Request.QueryString["pretragaAdresa"], pretragaGodinaMin = Request.QueryString["pretragaGodinaMin"], pretragaGodinaMax = Request.QueryString["pretragaGodinaMax"] }) </th>
+                <th> @Html.ActionLink("Godina", "UcitajFitnesCentre", new { sort = ViewBag.SortByGodina, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaAdresa = Request.QueryString["pretragaAdresa"], pretragaGodinaMin = Request.QueryString["pretragaGodinaMin"], pretragaGodinaMax = Request.QueryString["pretragaGodinaMax"] }) </th>
+                <th></th>
+            </tr>
+            @foreach (var fc in Model)
+            {
+            <tr>
+                <td>@fc.Naziv</td>
+                <td>@fc.Adresa</td>
+                <td>@fc.Godina</td>
+                <td>@Html.ActionLink("Vise informacija", "FitnesCentarViseInformacija", new { id = @fc.Id })</td>
+                @if (Session["id"] != null && (string)Session["uloga"] == "POSETILAC")
+                {
+                <td>@Html.ActionLink("Zakazi trening", "GrupniTreninziZakazivanje", "GrupniTrening", new { id = @fc.Id }, null)</td>
+                }
+            </tr>
+            }
+        </table>
+</body>
+</html>

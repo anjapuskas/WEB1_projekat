@@ -1,0 +1,110 @@
+﻿@model WebApplication.Models.FitnesCentarGrupniTreninziKomentari
+
+@{
+    ViewBag.Title = "FitnesCentarViseInformacija";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Vise informacija o fitnes centru</h2>
+    
+    <form>
+        <table>
+            <tr>
+                <td><label>Naziv fitnes centra: </label></td>
+                <td><label>@Model.FitnesCentar.Naziv</label></td>
+            </tr>
+            <tr>
+                <td><label>Adresa fitnes centra: </label></td>
+                <td><label>@Model.FitnesCentar.Adresa</label></td>
+            </tr>
+            <tr>
+                <td><label>Godina otvaranja fitnes centra: </label></td>
+                <td><label>@Model.FitnesCentar.Godina</label></td>
+            </tr>
+            <tr>
+                <td><label>Vlasnik fitnes centra: </label></td>
+                <td><label>@Model.FitnesCentar.VlasnikImePrezime</label></td>
+            </tr>
+            <tr>
+                <td><label>Cena mesecne clanarine: </label></td>
+                <td><label>@Model.FitnesCentar.CenaMesecne</label></td>
+            </tr>
+            <tr>
+                <td><label>Cena godisnje clanarine: </label></td>
+                <td><label>@Model.FitnesCentar.CenaGodisnje</label></td>
+            </tr>
+            <tr>
+                <td><label>Cena jednog treninga: </label></td>
+                <td><label>@Model.FitnesCentar.CenaJednog</label></td>
+            </tr>
+            <tr>
+                <td><label>Cena grupnog treninga: </label></td>
+                <td><label>@Model.FitnesCentar.CenaGrupnog</label></td>
+            </tr>
+            <tr>
+                <td><label>Cena personalnog treninga: </label></td>
+                <td><label>@Model.FitnesCentar.CenaPersonalnog</label></td>
+            </tr>
+        </table>
+    </form>
+
+    @*<div>
+        <label>Naziv fitnes centra: </label> <label style="margin-left:6px">@Model.FitnesCentar.Naziv</label> <br />
+        <label>Adresa fitnes centra: </label> <label style="margin-left:6px">@Model.FitnesCentar.Adresa</label> <br />
+        <label>Godina otvaranja fitnes centra: </label> <label style="margin-left:6px">@Model.FitnesCentar.Godina</label> <br />
+        <label>Vlasnik fitnes centra: </label> <label style="margin-left:6px">@Model.FitnesCentar.VlasnikImePrezime</label> <br />
+        <label>Cena mesecne clanarine: </label> <label style="margin-left:6px">@Model.FitnesCentar.CenaMesecne</label> <br />
+        <label>Cena godisnje clanarine: </label> <label style="margin-left:6px">@Model.FitnesCentar.CenaGodisnje</label> <br />
+        <label>Cena jednog treninga: </label> <label style="margin-left:6px">@Model.FitnesCentar.CenaJednog</label> <br />
+        <label>Cena grupnog treninga: </label> <label style="margin-left:6px">@Model.FitnesCentar.CenaGrupnog</label> <br />
+        <label>Cena personalnog treninga: </label> <label style="margin-left:6px">@Model.FitnesCentar.CenaPersonalnog</label> <br />
+    </div>*@
+    <br />
+
+    <table class="table">
+        <tr>
+            <th>Naziv</th>
+            <th>Tip Treninga</th>
+            <th>Trajanje Treninga</th>
+            <th>Datum i Vreme Treninga</th>
+            <th>Maksimalan Broj Posetilaca</th>
+            <th>Broj Prijavljenih Posetilaca</th>
+            <th></th>
+        </tr>
+        @foreach (var gt in @Model.GrupniTreninzi)
+        {
+
+            <tr>
+                <td>@gt.Naziv</td>
+                <td>@gt.Tip</td>
+                <td>@gt.TrajanjeTreninga</td>
+                <td>@gt.DatumTreninga</td>
+                <td>@gt.MaximalanBroj</td>
+                <td>@gt.Posetioci.Count</td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    <table class="table">
+        <tr>
+            <th>Tekst</th>
+            <th>Ocena</th>
+            <th></th>
+        </tr>
+        @foreach (var k in @Model.Komentari)
+        {
+
+            <tr>
+                <td>@k.Tekst</td>
+                <td>@k.Ocena</td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>
+
+

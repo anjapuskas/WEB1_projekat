@@ -1,0 +1,39 @@
+﻿@model WebApplication.Models.GrupniTrening
+
+@{
+    ViewBag.Title = "IzmeniGrupniTrening";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+
+    <h2>Izmeni Grupni Trening</h2>
+
+    <div id="izmenaForma">
+
+        <form action="IzmeniGrupniTrening" method="post">
+            <div class="left">@Html.LabelFor(model => model.Naziv)</div>
+            <div class="right">@Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Tip)</div>
+            <div class="right">@Html.EditorFor(model => model.Tip, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Trajanje treninga(minuti)")</div>
+            <div class="right">@Html.EditorFor(model => model.TrajanjeTreninga, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Datum treninga")</div>
+            <div class="right">@Html.EditorFor(model => model.DatumTreninga, new { htmlAttributes = new { @data_val = "true", @required = "required", @placeholder = "dd/mm/gggg SS:mm:ss" } })</div>
+
+            <div class="left">@Html.Label("Maksimalan broj")</div>
+            <div class="right">@Html.EditorFor(model => model.MaximalanBroj, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+            <div hidden>@Html.EditorFor(model => model.Id)</div>
+
+            <button id="izmeniDugme" type="submit">Izmeni</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+

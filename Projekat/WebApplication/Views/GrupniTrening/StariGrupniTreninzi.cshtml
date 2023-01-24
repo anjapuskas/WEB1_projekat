@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebApplication.Models.GrupniTrening>
+
+@{
+    ViewBag.Title = "StariGrupniTreninzi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Stari grupni treninzi</h2>
+
+    <b> Opcije pretrage:  </b>
+    <form action="UcitajStareGrupneTreninge" method="get">
+        <table>
+            <tr>
+                <td><label>Pretrazi po Nazivu</label></td>
+                <td><input type="text" name="pretragaNaziv" /></td>
+            </tr>
+            <tr>
+                <td><label>Pretrazi po Tipu</label></td>
+                <td><input type="text" name="pretragaTip" /></td>
+            </tr>
+            <tr>
+                <td><label>Pretrazi po Fitnes Centru</label></td>
+                <td><input type="text" name="pretragaFitnesCentar" /></td>
+            </tr>
+        </table>
+        <input type="submit" name="Pretrazi" value="Pretrazi" /> <br />
+        @Html.ActionLink("Resetuj pretragu", "StariGrupniTreninzi") <br /> <br />
+
+    </form>
+
+    <table class="table">
+        <tr>
+            <th> @Html.ActionLink("Naziv", "UcitajStareGrupneTreninge", new { sort = ViewBag.SortByNaziv, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaTip = Request.QueryString["pretragaTip"], pretragaFitnesCentar = Request.QueryString["pretragaFitnesCentar"] }) </th>
+            <th> @Html.ActionLink("Tip", "UcitajStareGrupneTreninge", new { sort = ViewBag.SortByTip, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaTip = Request.QueryString["pretragaTip"], pretragaFitnesCentar = Request.QueryString["pretragaFitnesCentar"] }) </th>
+            <th> @Html.ActionLink("Datum i Vreme Treninga", "UcitajStareGrupneTreninge", new { sort = ViewBag.SortByDatum, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaTip = Request.QueryString["pretragaTip"], pretragaFitnesCentar = Request.QueryString["pretragaFitnesCentar"] }) </th>
+            <th>Fitnes centar</th>
+            <th>Trajanje Treninga</th>
+            <th>Maksimalan Broj Posetilaca</th>
+            <th>Broj Prijavljenih Posetilaca</th>
+            <th></th>
+        </tr>
+        @foreach (var gt in Model)
+        {
+        <tr>
+            <td>@gt.Naziv</td>
+            <td>@gt.Tip</td>
+            <td>@gt.DatumTreninga</td>
+            <td>@gt.FitnesCentar.Naziv</td>
+            <td>@gt.TrajanjeTreninga</td>
+            <td>@gt.MaximalanBroj</td>
+            <td>@gt.Posetioci.Count</td>
+            <td>@Html.ActionLink("Komentarisi", "NapraviKomentar", "Komentar", new { id = @gt.FitnesCentar.Id }, new { @class = "btn btn-primary" })</td>
+        </tr>
+        }
+    </table>
+    <br />
+</body>
+</html>
+

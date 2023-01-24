@@ -1,0 +1,57 @@
+﻿@model WebApplication.Models.FitnesCentar
+
+@{
+    ViewBag.Title = "IzmeniFitnesCentar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+
+    <h2 style="color:#fc6519;">Izmeni Fitnes Centar</h2>
+
+    <div id="izmenaForma">
+
+        <form action="IzmeniFitnesCentar" method="post">
+            <div class="left">@Html.LabelFor(model => model.Naziv)</div>
+            <div class="right">@Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Adresa.Ulica)</div>
+            <div class="right">@Html.EditorFor(model => model.Adresa.Ulica, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Adresa.Broj)</div>
+            <div class="right">@Html.EditorFor(model => model.Adresa.Broj, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Adresa.Mesto)</div>
+            <div class="right">@Html.EditorFor(model => model.Adresa.Mesto, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Postanski broj")</div>
+            <div class="right">@Html.EditorFor(model => model.Adresa.PostanskiBroj, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Godina)</div>
+            <div class="right">@Html.EditorFor(model => model.Godina, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Cena mesecne clanarine")</div>
+            <div class="right">@Html.EditorFor(model => model.CenaMesecne, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Cena godisnje clanarine")</div>
+            <div class="right">@Html.EditorFor(model => model.CenaGodisnje, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Cena jednog treninga")</div>
+            <div class="right">@Html.EditorFor(model => model.CenaJednog, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Cena grupnog treninga")</div>
+            <div class="right">@Html.EditorFor(model => model.CenaGrupnog, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Cena personalnog treninga")</div>
+            <div class="right">@Html.EditorFor(model => model.CenaPersonalnog, new { htmlAttributes = new { @type = "number", @min = "0", @data_val = "true", @required = "required" } })</div>
+            <div hidden>@Html.EditorFor(model => model.Id)</div>
+
+            <button id="izmeniDugme" type="submit">Izmeni</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+

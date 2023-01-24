@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication.Models.GrupniTrening>
+
+@{
+    ViewBag.Title = "GrupniTreninziZakazivanje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+
+    <h2 style="color:#fc6519;">Zakazivanje Grupnih Treninga</h2>
+
+    <table class="table">
+        <tr>
+            <th>Naziv</th>
+            <th>Tip</th>
+            <th>Datum i vreme</th>
+            <th>Fitnes centar</th>
+            <th>Trajanje Treninga</th>
+            <th>Maksimalan Broj Posetilaca</th>
+            <th>Broj Prijavljenih Posetilaca</th>
+            <th></th>
+        </tr>
+        @foreach (var gt in Model)
+        {
+            <tr>
+                <td>@gt.Naziv</td>
+                <td>@gt.Tip</td>
+                <td>@gt.DatumTreninga</td>
+                <td>@gt.FitnesCentar.Naziv</td>
+                <td>@gt.TrajanjeTreninga</td>
+                <td>@gt.MaximalanBroj</td>
+                <td>@gt.Posetioci.Count</td>
+                <td>@Html.ActionLink("Zakazi", "ZakaziTrening", "GrupniTrening", new { id = gt.Id }, null)</td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>
+
+

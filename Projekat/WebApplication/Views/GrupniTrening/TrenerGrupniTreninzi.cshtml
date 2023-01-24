@@ -1,0 +1,103 @@
+﻿@model WebApplication.Models.ProsliBuduciGrupniTreninzi
+
+@{
+    ViewBag.Title = "TrenerGrupniTreninzi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Grupni Treninzi koji su se vec odrzali</h2>
+
+    <h3> Opcije pretrage:  </h3>
+    <form action="UcitajProsleGrupneTreninge" method="get">
+        <table >
+            <tr>
+                <td><label>Pretrazi po Nazivu:</label></td>
+                <td><input type="text" name="pretragaNaziv" /></td>
+            </tr>
+            <tr>
+                <td><label>Pretrazi po Tipu:</label></td>
+                <td><input type="text" name="pretragaTip" /></td>
+            </tr>
+            <tr>
+                <td><label>Pretrazi po Datumu Od:</label></td>
+                <td><input type="text" name="pretragaDatumOd" /></td>
+            </tr>
+            <tr>
+                <td><label>Pretrazi po Datumu Do:</label></td>
+                <td><input type="text" name="pretragaDatumDo" /></td>
+            </tr>
+        </table>
+
+        <input type="submit" name="Pretrazi" value="Pretrazi" /><br />
+        @Html.ActionLink("Resetuj pretragu", "TrenerGrupniTreninzi")<br /><br /><br />
+
+    </form>
+
+    <table class="table">
+        <tr>
+            <th> @Html.ActionLink("Naziv", "UcitajProsleGrupneTreninge", new { sort = ViewBag.SortByNaziv, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaTip = Request.QueryString["pretragaTip"], pretragaDatumOd = Request.QueryString["pretragaDatumOd"], pretragaDatumDo = Request.QueryString["pretragaDatumDo"] }) </th>
+            <th> @Html.ActionLink("Tip", "UcitajProsleGrupneTreninge", new { sort = ViewBag.SortByTip, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaTip = Request.QueryString["pretragaTip"], pretragaDatumOd = Request.QueryString["pretragaDatumOd"], pretragaDatumDo = Request.QueryString["pretragaDatumDo"] }) </th>
+            <th> @Html.ActionLink("Datum i Vreme Treninga", "UcitajProsleGrupneTreninge", new { sort = ViewBag.SortByDatum, pretragaNaziv = Request.QueryString["pretragaNaziv"], pretragaTip = Request.QueryString["pretragaTip"], pretragaDatumOd = Request.QueryString["pretragaDatumOd"], pretragaDatumDo = Request.QueryString["pretragaDatumDo"] }) </th>
+            <th>Fitnes centar</th>
+            <th>Trajanje Treninga</th>
+            <th>Maksimalan Broj Posetilaca</th>
+            <th>Broj Prijavljenih Posetilaca</th>
+            <th></th>
+        </tr>
+        @foreach (var gt in Model.ProsliGrupniTreninzi)
+        {
+            <tr>
+                <td>@gt.Naziv</td>
+                <td>@gt.Tip</td>
+                <td>@gt.DatumTreninga</td>
+                <td>@gt.FitnesCentar.Naziv</td>
+                <td>@gt.TrajanjeTreninga</td>
+                <td>@gt.MaximalanBroj</td>
+                <td>@gt.Posetioci.Count</td>
+                <td>@Html.ActionLink("Posetioci", "PosetiociGrupnogTreninga", "Korisnik", new { id = @gt.Id }, null)</td>
+            </tr>
+        }
+    </table><br/><br />
+
+    <h2 style="color:#fc6519;">Grupni Treninzi u buducnosti</h2>
+
+    <table class="table">
+        <tr>
+            <th>Naziv</th>
+            <th>Tip</th>
+            <th>Datum i vreme</th>
+            <th>Fitnes centar</th>
+            <th>Trajanje Treninga</th>
+            <th>Maksimalan Broj Posetilaca</th>
+            <th>Broj Prijavljenih Posetilaca</th>
+            <th></th>
+        </tr>
+        @foreach (var gt in Model.BuduciGrupniTreninzi)
+        {
+        <tr>
+            <td>@gt.Naziv</td>
+            <td>@gt.Tip</td>
+            <td>@gt.DatumTreninga</td>
+            <td>@gt.FitnesCentar.Naziv</td>
+            <td>@gt.TrajanjeTreninga</td>
+            <td>@gt.MaximalanBroj</td>
+            <td>@gt.Posetioci.Count</td>
+            <td>@Html.ActionLink("Posetioci", "PosetiociGrupnogTreninga", "Korisnik", new { id = @gt.Id }, null)</td>
+            <td>@Html.ActionLink("Izmeni", "IzmeniGrupniTrening", "GrupniTrening", new { id = @gt.Id }, new { @class = "btn btn-primary" })</td>
+            <td>@Html.ActionLink("Obrisi", "ObrisiGrupniTrening", new { id = @gt.Id })</td>
+        </tr>
+        }
+    </table>
+
+    <br/>
+
+    <h2 style="color:#fc6519;">Kreiraj novi grupni trening</h2>
+    <form action="KreirajGrupniTrening" method="get">
+            <input type="submit" name="Kreiraj" value="Kreiraj" />
+    </form>
+
+</body>
+</html>
+

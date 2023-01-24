@@ -1,0 +1,31 @@
+﻿@model WebApplication.Models.FitnesCentarKomentar
+
+@{
+    ViewBag.Title = "NapraviKomentar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Napravi komentar za Fitnes Centar - @Model.FitnesCentar.Naziv</h2>
+
+    <form action="NapraviKomentar" , method="post">
+        <div class="left">@Html.LabelFor(model => model.Komentar.Ocena)</div>
+        @Html.DropDownListFor(model => model.Komentar.Ocena, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "1", Value="1"},
+                        new SelectListItem() {Text = "2", Value="2"},
+                        new SelectListItem() {Text = "3", Value="3"},
+                        new SelectListItem() {Text = "4", Value="4"},
+                        new SelectListItem() {Text = "5", Value="5"},
+    }, new { htmlAttributes = new { @data_val = "true", @required = "required" } })
+        <br /><br />
+        <div class="left">@Html.LabelFor(model => model.Komentar.Tekst)</div>
+        <div class="right">@Html.EditorFor(model => model.Komentar.Tekst, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+        <div hidden>@Html.EditorFor(model => model.FitnesCentar)</div> 
+        <input type="submit" value="Komentarisi" />
+    </form>
+</body>
+</html>
+
+

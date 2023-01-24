@@ -1,0 +1,31 @@
+﻿@model WebApplication.Models.Korisnik
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <div>
+        <div>
+            <form action="Login" method="post">
+                <h1 style="color:#fc6519;">Dobrodosli!</h1> 
+                <h1 style="color:#fc6519;">Login</h1> <br />
+
+                <div class="left">@Html.LabelFor(model => model.Username)</div>
+                <div class="right">@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+                <div class="left">@Html.LabelFor(model => model.Lozinka)</div>
+                <div class="right">@Html.PasswordFor(model => model.Lozinka, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+                <button type="submit">Login</button>
+
+            </form>
+        </div>
+            <form>
+                <h5>Nemas nalog?  @Html.ActionLink("Registruj se", "Registracija")</h5>
+
+            </form>
+    </div>
+</body>
+</html>
