@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication.Models.Komentar>
+
+@{
+    ViewBag.Title = "KomentariTabela";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Komentari</h2>
+
+    <table class="table">
+        <tr>
+            <th>Posetilac</th>
+            <th>Fitnes Centar</th>
+            <th>Komentar</th>
+            <th>Ocena</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        @foreach (var k in @Model)
+        {
+
+        <tr>
+            <td>@k.Komentarisao.Username</td>
+            <td>@k.FitnesCentar.Naziv</td>
+            <td>@k.Tekst</td>
+            <td>@k.Ocena</td>
+            @if (k.IsBlocked)
+            {
+                <td>Blokiran</td>
+            }
+            @if (k.IsApproved)
+            {
+                <td>Odobren</td>
+            }
+            @if (!k.IsApproved && !k.IsBlocked)
+            {
+                <td>Cekanje</td>
+            }
+            @if (!k.IsApproved && !k.IsBlocked)
+            {
+                <td>@Html.ActionLink("Odobri", "OdobriKomentar", "Komentar", new { id = @k.Id }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Blokiraj", "BlokirajKomentar", "Komentar", new { id = @k.Id }, new { @class = "btn btn-primary" })</td>
+            }
+        </tr>
+        }
+    </table>
+</body>
+</html>
+
+

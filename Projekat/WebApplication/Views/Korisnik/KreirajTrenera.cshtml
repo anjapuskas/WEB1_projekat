@@ -1,0 +1,46 @@
+﻿@model WebApplication.Models.KreiranjeTrenera
+
+@{
+    ViewBag.Title = "KreirajTrenera";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <div>
+        <form action="KreirajTrenera" method="post">
+            <h1 style="color:#fc6519;">Kreiraj Trenera</h1> <br />
+
+            <div class="left">@Html.LabelFor(model => model.Username)</div>
+            <div class="right">@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Lozinka)</div>
+            <div class="right">@Html.PasswordFor(model => model.Lozinka, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Ime)</div>
+            <div class="right">@Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Prezime)</div>
+            <div class="right">@Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Pol)</div>
+            <div class="left">@Html.Label("Muski")</div>
+            <div class="right">@Html.RadioButtonFor(model => model.Pol, "Muski")</div>
+            <div class="left">@Html.Label("Zenski")</div>
+            <div class="right">@Html.RadioButtonFor(model => model.Pol, "Zenski")</div>
+
+            <div class="left">@Html.Label("Fitnes centar")</div>
+            @Html.DropDownListFor(model => model.FitnesCentarId, ViewBag.FitnesCentri as SelectList, new { htmlAttributes = new { @data_val = "true", @required = "required" } })
+
+            <div class="left">@Html.LabelFor(model => model.Email)</div>
+            <div class="right">@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Datum rodjenja")</div>
+            <div class="right">@Html.EditorFor(model => model.DatumRodjenja, new { htmlAttributes = new { @data_val = "true", @required = "required", @placeholder = "dd/mm/gggg" } })</div>
+
+            <button type="submit">Kreiraj</button>
+
+        </form>
+    </div>
+</body>
+</html>

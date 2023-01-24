@@ -1,0 +1,69 @@
+﻿@model WebApplication.Models.Korisnik
+
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Profil</h2>
+
+    <div id="detaljiForma">
+            <label>Korisnicko ime: </label> <label style="margin-left:10px">@Model.Username</label> <br />
+            <label>Ime: </label> <label style="margin-left:85px">@Model.Ime</label> <br />
+            <label>Prezime: </label> <label style="margin-left:55px">@Model.Prezime</label> <br />
+            <label>Pol: </label> <label style="margin-left:87px">@Model.Pol</label> <br />
+            <label>Email: </label> <label style="margin-left:70px">@Model.Email</label> <br />
+            <label>Datum rodjenja: </label> <label style="margin-left:6px">@Model.DatumRodjenja</label> <br />
+            <label>Uloga: </label> <label style="margin-left:70px">@Model.Uloga</label> <br />
+
+            <button id="otvoriIzmenu" type="submit">Izmeni</button>
+        </div>
+
+
+
+    <div id="izmenaForma" hidden>
+
+        <form action="Profil" method="post">
+            <div class="left">@Html.LabelFor(model => model.Username)</div>
+            <div class="right">@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Ime)</div>
+            <div class="right">@Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Prezime)</div>
+            <div class="right">@Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.LabelFor(model => model.Pol)</div>
+            <div class="left">@Html.Label("Muski")</div>
+            <div class="right">@Html.RadioButtonFor(model => model.Pol, "Muski")</div>
+            <div class="left">@Html.Label("Zenski")</div>
+            <div class="right">@Html.RadioButtonFor(model => model.Pol, "Zenski")</div>
+
+            <div class="left">@Html.LabelFor(model => model.Email)</div>
+            <div class="right">@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @data_val = "true", @required = "required" } })</div>
+
+            <div class="left">@Html.Label("Datum rodjenja")</div>
+            <div class="right">@Html.EditorFor(model => model.DatumRodjenja, new { htmlAttributes = new { @data_val = "true", @required = "required", @placeholder = "dd/mm/gggg" } })</div>
+
+
+            <button id="izmeniDugme" type="submit">Izmeni</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $('#otvoriIzmenu').click(function () {
+        $('#detaljiForma').hide();
+        $('#izmenaForma').show();
+    });
+
+    $('#izmeniDugme').click(function () {
+        $('#detaljiForma').show();
+        $('#izmenaForma').hide();
+    });
+</script>

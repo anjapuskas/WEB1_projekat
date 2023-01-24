@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication.Models.Korisnik>
+
+@{
+    ViewBag.Title = "PosetiociGrupnogTreninga";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2 style="color:#fc6519;">Posetioci Grupnog Treninga</h2>
+
+    <table class="table">
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Pol</th>
+            <th>Email</th>
+            <th>Datum Rodjenja</th>
+            <th></th>
+        </tr>
+        @foreach (var p in @Model)
+        {
+            <tr>
+                <td>@p.Ime</td>
+                <td>@p.Prezime</td>
+                <td>@p.Pol</td>
+                <td>@p.Email</td>
+                <td>@p.DatumRodjenja</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
+
+
